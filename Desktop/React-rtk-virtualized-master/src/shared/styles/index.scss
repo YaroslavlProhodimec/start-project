@@ -19,7 +19,6 @@ $mobile-padding: 24px;
   padding-right: $desktop-padding;
   padding-left: $desktop-padding;
   margin: 0 auto;
-
   @include mobile {
     padding-right: $mobile-padding;
     padding-left: $mobile-padding;

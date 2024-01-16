@@ -1,12 +1,11 @@
 import { StrictMode } from "react";
 
 import { loadableReady } from "@loadable/component";
-import { USE_SERVICE_WORKER } from "@shared/config";
+import { App } from "./app";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { HashRouter } from "react-router-dom";
-
-import { App } from "./app";
+import { USE_SERVICE_WORKER } from "./shared/config";
 
 if (module.hot) {
   module.hot.accept();

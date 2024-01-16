@@ -1,26 +1,27 @@
-import { FC, PropsWithChildren, ReactNode, SyntheticEvent } from "react";
+import {ReactNode, SyntheticEvent} from "react";
+
 
 import { Link } from "react-router-dom";
 
-interface IButton extends PropsWithChildren {
-  children: ReactNode | string;
-  className?: string;
-  href?: string;
-  type?: "button" | "submit" | "reset";
-  onClickHandler?: (e: SyntheticEvent<HTMLButtonElement>) => void;
+type PropsType = {
+    children: ReactNode | string;
+    className?: string;
+    href?: string;
+    type?: "button" | "submit" | "reset" 
+    onClickHandler?: (e: SyntheticEvent<HTMLButtonElement>) => void;
 }
 
-export const Button: FC<IButton> = (props) =>
-  props.href ? (
-    <Link to={props.href} className={props.className}>
-      {props.children}
-    </Link>
-  ) : (
-    <button
-      type={props.type ? props.type : "button"}
-      className={props.className}
-      onClick={props.onClickHandler}
-    >
-      {props.children}
-    </button>
-  );
+export const Button  = ({children,className,href,type,onClickHandler}:PropsType) =>
+  href ? (
+        <Link to={href} className={className}>
+            {children}
+        </Link>
+    ) : (
+        <button
+            type={type ? type : "button"}
+            className={className}
+            onClick={onClickHandler}
+        >
+            {children}
+        </button>
+    );

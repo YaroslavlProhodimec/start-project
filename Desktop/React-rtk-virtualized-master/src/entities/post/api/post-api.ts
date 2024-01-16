@@ -1,28 +1,27 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { API_URL } from "@shared/config";
 
-import { IProductDto, IProductsDto } from "./types";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import { API_URL } from "../../../shared/config";
+import { PostType } from "../model/type";
 
-const postsApi = createApi({
-  reducerPath: "postsApi",
-  tagTypes: ["Post"],
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
-  }),
-  endpoints: (builder) => ({
-    getPosts: builder.query<IProductsDto, string>({
-      query(itemsToSkip) {
-        return `?limit=5&skip=${itemsToSkip}`;
-      },
+
+
+export const postAPI = createApi({
+    reducerPath: 'PostAPI',
+    baseQuery: fetchBaseQuery(
+        {baseUrl: API_URL}),
+    endpoints: (builder) => ({
+        fetchAllPosts: builder.query<PostType[], string>({
+            query(itemsToSkip) {
+                return `?limit=5&skip=${itemsToSkip}`;
+            },
+        }),
+        fetchPostById: builder.query<PostType, string>({
+            query(productId) {
+                return `/${productId}`;
+            },
+        }),
     }),
-    getPostById: builder.query<IProductDto, string>({
-      query(productId) {
-        return `/${productId}`;
-      },
-    }),
-  }),
-});
+})
+const { useFetchAllPostsQuery, useFetchPostByIdQuery } = postAPI;
 
-const { useGetPostsQuery, useGetPostByIdQuery } = postsApi;
-
-export { postsApi, useGetPostsQuery, useGetPostByIdQuery };
+export { useFetchAllPostsQuery, useFetchPostByIdQuery };

@@ -1,35 +1,39 @@
-import { FC } from "react";
-
-import { PostCard, useGetPostsQuery } from "@entities/post";
-import { VirtualizedList } from "@shared/ui/virtualized-list";
-import { BtnToPostDetails } from "@src/features";
-
+// @ts-ignore
+import React, { FC } from "react";
 import styles from "./styles.module.scss";
 import { ITEM_HEIGTH, LIST_HEIGHT } from "../config/virtualized-list-config";
+import { PostCard, useFetchAllPostsQuery } from "../../../entities/post";
+import { VirtualizedList } from "../../../shared/ui/virtualized-list";
+import { BtnView } from "../../../features";
 
 const Posts: FC = () => {
-  const { data } = useGetPostsQuery("0");
+    document.title = "Harmony Oasis Center Clinic - Медицинский Центр Оазис Гармонии";
 
-  return (
-    <section className={styles.expand}>
-      {data && (
-        <VirtualizedList
-          totalItems={data?.total || 0}
-          listHeight={LIST_HEIGHT}
-          itemHeight={ITEM_HEIGTH}
-          renderComponent={(index) => {
-            const currentId = index + 1;
-            return (
-              <PostCard
-                id={currentId}
-                bottomSlot={() => <BtnToPostDetails productId={currentId} />}
-              />
-            );
-          }}
-        />
-      )}
-    </section>
-  );
+    const { data } = useFetchAllPostsQuery("0");
+
+    return (
+        <section className={styles.expand}>
+            {data && (
+
+                <VirtualizedList
+                    totalItems={17
+                    // data?.total
+                        || 0}
+                    listHeight={LIST_HEIGHT}
+                    itemHeight={ITEM_HEIGTH}
+                    renderComponent={(index) => {
+                        const currentId = index + 1;
+                        return (
+                            <PostCard
+                                id={currentId}
+                                component={() => <BtnView productId={currentId} />}
+                            />
+                        );
+                    }}
+                />
+            )}
+        </section>
+    );
 };
 
 export { Posts };

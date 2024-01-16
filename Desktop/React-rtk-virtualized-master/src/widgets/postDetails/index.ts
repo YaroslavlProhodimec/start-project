@@ -1,1 +1,1 @@
-export { PostDetails } from "./ui";
+// import {Service} from './postDetails/ui'

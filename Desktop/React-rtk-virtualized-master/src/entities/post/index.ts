@@ -1,2 +1,2 @@
 export { PostCard } from "./ui/PostCard";
-export { postsApi, useGetPostsQuery } from "./api/post-api";
+export { postAPI, useFetchAllPostsQuery } from "./api/post-api";

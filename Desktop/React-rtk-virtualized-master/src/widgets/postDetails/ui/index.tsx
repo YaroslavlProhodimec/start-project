@@ -1,57 +1,98 @@
-import { FC } from "react";
+import React from 'react';
+import styles from './styles.module.scss'
+import {motion, useMotionValue, useTransform} from "framer-motion";
+import {TypeAnimation} from "react-type-animation";
+import {Link} from 'react-router-dom';
+import image from "../../../shared/assets/img/scare.png";
+import {colors} from "../config";
+import { PostType } from "../../../entities/post/model/type";
+import { fadeIn } from "../../../shared/utils";
+import { Button } from "../../../shared/ui/button";
 
-import { IProductDto } from "@entities/post/api/types";
+// react-type-animation
+// framer-motion
 
-interface IPostDetailsProps {
-  product: IProductDto;
-}
-
-const PostDetails: FC<IPostDetailsProps> = (props) => {
-  const {
-    brand = "Brand",
-    description = "No description",
-    id,
-    discountPercentage = 0,
-    images = [],
-    price = 0,
-    rating = 0,
-    stock = 0,
-    thumbnail = "",
-    title = "Title",
-  } = props.product;
-
-  return (
-    <section>
-      <div className="row">
-        <div className="col-md-6">
-          <img src={thumbnail} alt="Product Thumbnail" className="img-fluid" />
-        </div>
-        <div className="col-md-6">
-          <span>Article:{id}</span>
-          <h2 className="mb-4">{title}</h2>
-          <p>{description}</p>
-          <p>Price: ${price}</p>
-          <p>Discount: {discountPercentage}%</p>
-          <p>Rating: {rating}</p>
-          <p>In Stock: {stock}</p>
-          <p>Brand: {brand}</p>
-        </div>
-      </div>
-      <div className="row mt-4">
-        <div className="col-md-12">
-          <h3>Product Images</h3>
-          <div className="row">
-            {images.length &&
-              images.map((src, index) => (
-                <div className="col-md-3 mb-3" key={index}>
-                  <img src={src} alt="" className="img-fluid" />
-                </div>
-              ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+type ServiceProps = {
+    post: PostType;
 };
+const Service: React.FC<ServiceProps> = ({post}) => {
+    document.title = "Harmony Oasis Center Clinic - Медицинский Центр Оазис Гармонии";
 
-export { PostDetails };
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-100, 100], [30, -30]);
+    const rotateY = useTransform(x, [-100, 100], [-30, 30]);
+
+
+
+    return (
+
+        <div className={styles.cardContainer}>
+            <motion.div
+                style={{x, y, rotateX, rotateY, z: 100}}
+                drag
+                dragElastic={0.18}
+                dragConstraints={{top: 0, left: 0, right: 0, bottom: 0}}
+                whileTap={{cursor: 'grabbing'}}
+                className={styles.card}
+            >
+                <motion.div variants={fadeIn('right', 0.4)} initial='hidden' whileInView={'show'}
+                            viewport={{once: false, amount: 0.7}} className={styles.containerSpan}>
+                    <span className={styles.span}>Пошевели 😀 </span>
+                    <TypeAnimation style={{ color: '#ff0000'}} sequence={['меня', 2000,
+                        '', 2000
+                    ]} speed={50}/>
+
+                </motion.div>
+                <h1 className={styles.cardTitle}
+                >{post.title}</h1>
+
+                <p className={styles.cardSubtitle}
+
+                >
+                    {post.description}
+                </p>
+
+                <div className={styles.priceWrapper}
+                >
+                    <Link to={'/'}> <Button
+                        className="btn btn-outline-danger
+                         m-lg-1
+                         "
+                    >
+                        To back
+                    </Button></Link>
+                    <div className={styles.price}
+
+                    >{post.price}
+                    </div>
+                </div>
+                <ul className={styles.colors}
+                >
+                    {colors.map((color, index) => {
+                        return (
+                            <div
+                                key={index}
+                                style={{backgroundColor: color.value}}
+                                className={styles.color}
+
+                            ></div>
+                        );
+                    })}
+                </ul>
+                <motion.div
+                    style={{x, y, rotateX, rotateY, z: 100000}}
+                    className={styles.cardImage}
+
+                >
+                    <img width={300}  className={styles.img} src={image} draggable='false' alt=""/>
+
+                </motion.div>
+            </motion.div>
+        </div>
+
+    );
+
+
+}
+export {Service}

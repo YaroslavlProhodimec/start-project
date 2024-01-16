@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+
     "lib": [
       "dom",
       "es2021",
@@ -20,7 +21,7 @@
     "skipLibCheck": true,
     "declaration": false,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",

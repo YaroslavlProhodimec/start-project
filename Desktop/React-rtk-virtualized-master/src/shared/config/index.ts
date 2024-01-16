@@ -1,5 +1,4 @@
-export const API_URL = "https://dummyjson.com/products";
-
+export const API_URL = "https://my-json-server.typicode.com/YaroslavlProhodimec/test-json/posts";
 export { ROUTE_CONSTANTS } from "./routes";
 
 export const isServer: boolean = !(typeof window !== "undefined");

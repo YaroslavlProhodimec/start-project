@@ -1,21 +1,21 @@
-import { FC, ReactElement } from "react";
+// @ts-ignore
+import React, { FC, ReactElement } from "react";
 
-import "@shared/styles/globals.scss";
-import { ErrorBoundary } from "@shared/ui/error-boundary";
-import { Router } from "@src/pages";
+import "../shared/styles/globals.scss";
+// eslint-disable-next-line import/order
 import { Provider } from "react-redux";
-
-import { store } from "./store";
 import "./styles/index.scss";
+import { store } from "./store";
+import { Router } from "../pages";
+
 
 const App: FC = (): ReactElement => {
-  return (
+    return (
     <Provider store={store}>
-      <ErrorBoundary>
-        <Router />
-      </ErrorBoundary>
-    </Provider>
-  );
+
+                <Router />
+        </Provider>
+    );
 };
 
 export { App };

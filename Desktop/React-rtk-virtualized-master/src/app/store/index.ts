@@ -1,11 +1,13 @@
-import { postsApi } from "@entities/post";
 import { configureStore } from "@reduxjs/toolkit";
+import { postAPI } from "../../entities/post";
+
+
 
 export const store = configureStore({
-  reducer: {
-    [postsApi.reducerPath]: postsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware),
-  devTools: true,
+    reducer: {
+        [postAPI.reducerPath]: postAPI.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(postAPI.middleware),
+    devTools: true,
 });
