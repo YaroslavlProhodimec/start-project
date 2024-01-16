@@ -4,13 +4,11 @@ import {motion, useMotionValue, useTransform} from "framer-motion";
 import {TypeAnimation} from "react-type-animation";
 import {Link} from 'react-router-dom';
 import image from "../../../shared/assets/img/scare.png";
+import im from "../../../assets/images/favicon.svg";
 import {colors} from "../config";
 import { PostType } from "../../../entities/post/model/type";
 import { fadeIn } from "../../../shared/utils";
 import { Button } from "../../../shared/ui/button";
-
-// react-type-animation
-// framer-motion
 
 type ServiceProps = {
     post: PostType;
@@ -86,6 +84,7 @@ const Service: React.FC<ServiceProps> = ({post}) => {
 
                 >
                     <img width={300}  className={styles.img} src={image} draggable='false' alt=""/>
+                    <img width={300}  className={styles.img} src={im} draggable='false' alt=""/>
 
                 </motion.div>
             </motion.div>
