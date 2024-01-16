@@ -1,0 +1,23 @@
+$primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+html,
+body,
+main {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  min-width: 320px;
+}
+
+body > #root {
+  height: 100vh;
+}
+
+body {
+  background-color: #333;
+  color: #eee;
+}
