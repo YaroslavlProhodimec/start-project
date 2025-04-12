@@ -1,11 +1,13 @@
 {
  "name": "start-new-project",
  "version": "1.0.0",
- "main": "index.js",
+ "main": "dist/index.js",
  "license": "MIT",
  "scripts": {
- "watch": "tsc -w",
-  "dev" : "nodemon --inspect dist/index.js"
+  "build": "tsc",
+  "watch": "tsc -w",
+  "dev": "nodemon --inspect dist/index.js",
+  "start": "node dist/index.js"
  },
  "dependencies": {
   "express": "^5.1.0"
